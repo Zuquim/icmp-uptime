@@ -12,7 +12,7 @@ import pwd
 
 conf = Configurer.Essentials()
 rrd_path = conf.rrd_path
-hostname = conf.host
+host_list = conf.host_list
 d_user = conf.daemon_username
 d_group = conf.daemon_groupname
 
@@ -66,21 +66,20 @@ class Daemon(object):
 
     @staticmethod
     def run():
-        full_path = rrd_path + hostname + '/icmp_uptime.rrd'
-        if os.path.exists(full_path) is False:
-            rrdtool.create(full_path,
-                           'DS:status:GAUGE:600:U:U',
-                           'RRA:AVERAGE:0.5:1:600',
-                           'RRA:AVERAGE:0.5:6:700',
-                           'RRA:AVERAGE:0.5:24:775',
-                           'RRA:AVERAGE:0.5:288:797')
-        try:
-            while 1:
-                update(full_path, hostname)
-                time.sleep(30)  # Change to 300 for production env
-        except KeyboardInterrupt:
-            print('Exiting[10]: Keyboard interrupted.')
-            exit(10)
+        for host in host_list:
+            full_path = rrd_path + host + '/icmp_uptime.rrd'
+            if os.path.exists(full_path) is False:
+                rrdtool.create(full_path,
+                               'DS:status:GAUGE:600:U:U',
+                               'RRA:AVERAGE:0.5:1:600',
+                               'RRA:AVERAGE:0.5:6:700',
+                               'RRA:AVERAGE:0.5:24:775',
+                               'RRA:AVERAGE:0.5:288:797')
+        while 1:
+            for host in host_list:
+                full_path = rrd_path + host + '/icmp_uptime.rrd'
+                update(full_path, host)
+                time.sleep(60)  # Change to 300 for production env
 
 
 if __name__ == '__main__':
