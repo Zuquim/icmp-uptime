@@ -5,6 +5,5 @@
 #
 rrd_path := /this/is/just/an/example/
 host address := www.example.com
-production env daemon username|groupname := exampleUsername|exampleGroupname
-test env daemon username|groupname := exampleUsername|exampleGroupname
+daemon username|groupname := exampleUsername|exampleGroupname
 # EOF
