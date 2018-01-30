@@ -99,3 +99,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# IDE files
+.idea
+.idea/*
+
+# Project's sensitive data
+setup.conf

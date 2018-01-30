@@ -1,0 +1,10 @@
+# WARNING: This is a sample configuration file!
+# Please make a copy of this sample config file and name it 'setup.conf'.
+# In your copy you should edit the fields after the ':= ' sign accordingly.
+# To avoid any unexpected errors, do not add nor remove any lines from it.
+#
+rrd_path := /this/is/just/an/example/
+host address := www.example.com
+production env daemon username|groupname := exampleUsername|exampleGroupname
+test env daemon username|groupname := exampleUsername|exampleGroupname
+# EOF
