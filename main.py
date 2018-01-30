@@ -68,7 +68,6 @@ class Daemon(object):
     def run():
         full_path = rrd_path + hostname + '/icmp_uptime.rrd'
         if os.path.exists(full_path) is False:
-            print('\nerror\n')
             rrdtool.create(full_path,
                            'DS:status:GAUGE:600:U:U',
                            'RRA:AVERAGE:0.5:1:600',
