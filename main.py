@@ -69,6 +69,7 @@ class Daemon(object):
         for host in host_list:
             full_path = rrd_path + host + '/icmp_uptime.rrd'
             if os.path.exists(full_path) is False:
+                print('RRD not found. Making one: ' + full_path)
                 rrdtool.create(full_path,
                                'DS:status:GAUGE:600:U:U',
                                'RRA:AVERAGE:0.5:1:600',
@@ -79,7 +80,7 @@ class Daemon(object):
             for host in host_list:
                 full_path = rrd_path + host + '/icmp_uptime.rrd'
                 update(full_path, host)
-                time.sleep(60)  # Change to 300 for production env
+            time.sleep(60)  # Change to 300 for production env
 
 
 if __name__ == '__main__':
