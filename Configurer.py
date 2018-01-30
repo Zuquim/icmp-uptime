@@ -13,7 +13,7 @@ class Essentials:
                     out += line.rstrip() + '\n'
             o = out.strip().splitlines()
             self.rrd_path = o[0].split(' := ')[1]
-            self.host_list = o[1].split(' := ')[1]
+            self.host_list = o[1].split(' := ')[1].strip().split()
             self.daemon_username = o[2].split(' := ')[1].split('|')[0]
             self.daemon_groupname = o[2].split(' := ')[1].split('|')[1]
             if not self.rrd_path.endswith('/'):

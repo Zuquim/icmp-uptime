@@ -4,6 +4,6 @@
 # To avoid any unexpected errors, do not add nor remove any lines from it.
 #
 rrd_path := /this/is/just/an/example/
-host addresses list := ['www.example.com', 'egg.net', '8.8.8.8']
+host addresses list := www.example.com egg.net 8.8.8.8
 daemon username|groupname := exampleUsername|exampleGroupname
 # EOF
